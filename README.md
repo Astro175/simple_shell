@@ -45,7 +45,7 @@ shl can be invoked both interactively and non-interactively. If shl is invoked w
 
 Example :
 
-```http
+```bash
 $ echo "echo 'hello'" | ./shl
 'hello'
 $
@@ -55,7 +55,7 @@ If shl is invoked with standard input connected to a terminal (determined by isa
 
 Example:
 
-```http
+```bash
 $ cat test
 echo 'hello'
 $ ./shl test
