@@ -11,6 +11,6 @@ void _puts(char *str);
 int _eputchar(char c);
 void _eputs(char *str);
 int _putcfd(char c, int fd);
-int _putsfd(char *str, int fd)
+int _putsfd(char *str, int fd);
 
 #endif
