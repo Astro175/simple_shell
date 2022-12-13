@@ -9,6 +9,25 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
+/*builtin function structure*/
+/**
+ * struct builtin - object for builtin command
+ * @name: name of the command argument
+ * @fp: function pointer thats stores the algo for the functions to be called
+ */
+typedef struct builtin
+{
+	char *name;
+	int (*fp)(char **args)
+} builtin_t;
+
+typedef struct shlObj
+{
+	char *arg;
+	char **argv;
+	/*more incoming*/
+} shl_t;
+
 /* Write functions prototypes*/
 int _putchar(char c);
 void _puts(char *str);
@@ -20,6 +39,12 @@ int _putcfd(char c, int fd);
 int _putsfd(char *str, int fd);
 
 /*buitin cmd functions*/
-int shl_exit(char **args);
+int builtin_call(shl_t *);
+int shl_exit(shl_t *);
+
+/*Strings functions*/
+int _strlen(char *s);
+char *_strcpy(char *dest, char *src);
+int _strcmp(char *s1, char *s2);
 
 #endif

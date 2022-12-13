@@ -1,0 +1,3 @@
+Complete the builtin command function call implementation
+Write the algo the for the builtin command for the shell
+Write the algo for print_error function
