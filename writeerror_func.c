@@ -59,3 +59,43 @@ int _putsfd(char *str, int fd)
 	return (i);
 }
 
+/**
+ * print_d - prints a decimal integer number
+ * @num: parsed integer number
+ * @fd: file descriptor to write to
+ * Return: the count of number printed
+ */
+int print_d(int num, int fd)
+{
+	/*Initialize the function pointer with putchar*/
+	int (*__putchar)(char) = _putchar;
+	int i, count = 0;
+	unsigned int _abs_, current;
+
+	/*if the file descriptor is 2 or stderr no
+	switch the __putchar to _eputchar function*/
+	if (fd == STDERR_FILENO)
+		__putchar = _eputchar;
+	if (num < 0)
+	{
+		_abs_ = -num;
+		__putchar('-');
+		count++;
+	}
+	else
+		_abs_ = num;
+	current = _abs_;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+		if (_abs_ / i)
+		{
+			__putchar('0' + current / i);
+			count++;
+		}
+		current %= i;
+	}
+	__putchar('0' + current);
+	count++;
+
+	return (count);
+}

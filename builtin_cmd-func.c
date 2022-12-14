@@ -21,18 +21,18 @@ int builtin_call(shl_t *data)
 		{NULL, NULL}};
 
 	for (i = 0; builtin[i].name; i++)
-		if (strcmp(data->argv[0], builtin[i].name) == 0)
-			return (builtin[i].fp(data));
+		if (_strcmp(data->argv[0], builtin[i].name) == 0)
+			return (builtin[i].fp(data->argv));
 	return (-1);
 }
 
 /*Still working on this*/
-int shl_exit(char **args)
+int shl_exit(shl_t *data)
 {
 	return (0);
 }
 
-int shl_help(char **args)
+int shl_help(shl_t *data)
 {
 	int i;
 

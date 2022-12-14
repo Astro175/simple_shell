@@ -18,13 +18,15 @@
 typedef struct builtin
 {
 	char *name;
-	int (*fp)(char **args)
+	int (*fp)(char **args);
 } builtin_t;
 
 typedef struct shlObj
 {
 	char *arg;
 	char **argv;
+	char *file_name;
+	unsigned int err_count;
 	/*more incoming*/
 } shl_t;
 
@@ -32,15 +34,20 @@ typedef struct shlObj
 int _putchar(char c);
 void _puts(char *str);
 
-/* Write error functions prototypes*/
+/* Write error functions 1 prototypes*/
 int _eputchar(char c);
 void _eputs(char *str);
 int _putcfd(char c, int fd);
 int _putsfd(char *str, int fd);
+int print_d(int num, int fd);
+
+/* Write error functions 2 prototypes*/
+void print_error(shl_t *data, char *dest);
 
 /*buitin cmd functions*/
 int builtin_call(shl_t *);
-int shl_exit(shl_t *);
+int shl_exit(shl_t *data);
+int shl_help(shl_t *data);
 
 /*Strings functions*/
 int _strlen(char *s);
