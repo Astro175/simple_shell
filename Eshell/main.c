@@ -8,16 +8,18 @@
 
 int main(int ac, char **argv)
 {
-	char *prompt = " $ ";
+	char *prompt = "$ ";
 	char *lineptr, *lineptr_copy;
-    const char *delim = " \n"
+    const char *delim = " \n";
 	size_t n = 0;
     ssize_t nchars_read;
+    int i;
+   /*number of characters the user typed*/
     int num_tokens = 0;
     char *token;    
 
 		        /* declaring void variables */
-	(void)ac; (void)argv;
+	(void)ac;
 
 			    /* create an infinite loop */
 	while (1)
@@ -29,7 +31,7 @@ int main(int ac, char **argv)
             printf("Exiting the shell...\n");
             return (-1);
         }
-        lineptr_copy = malloc(sizeof(char) * nchars);
+        lineptr_copy = malloc(sizeof(char) * nchars_read);
         if (lineptr_copy == NULL)
         {
             perror("memory allocation error");
@@ -47,12 +49,28 @@ int main(int ac, char **argv)
         num_tokens++;
         /* Allocating space for the array of strings */
         argv = malloc(sizeof(char) * num_tokens);
+        /* Store Each string in the argv array */
+        token = strtok(lineptr_copy, delim);
+
+        for(i = 0; token != NULL; i++)
+        {
+            argv[i] = malloc(sizeof(char) * strlen(token));
+            strcpy(argv[i], token);
+
+            token = strtok(NULL, delim);
+        }
+        argv[i] = NULL;
+        /* Execute the commands */
+        execmd(argv);
+            
 		printf("%s", lineptr);
         
 	
 	}
 	/* Frees up allocated space */
     free(lineptr);
+    free(lineptr_copy);
+    free(argv);
 	return (0);
 	}
 
