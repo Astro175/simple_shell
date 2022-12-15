@@ -32,6 +32,7 @@ typedef struct shlObj
 	/*more incoming*/
 } shl_t;
 
+
 /* Write functions prototypes*/
 int _putchar(char c);
 void _puts(char *str);
@@ -45,7 +46,6 @@ int print_d(int num, int fd);
 
 /* Write error functions 2 prototypes*/
 void print_error(shl_t *data, char *dest);
-int _erratoi(char *s);
 
 /*buitin cmd functions*/
 int builtin_call(shl_t *);
