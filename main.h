@@ -68,6 +68,13 @@ int shl_history(shl_t *data);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
+char *_strcat(char *dest, char *src);
+
+/*More strings function*/
+char *_strncat(char *dest, char *src, int n);
+char *_strncpy(char *dest, char *src, int n);
+char *_strchr(char *s, char c);
+char *_strdup(char *str);
 
 /*List functions 1*/
 char *convert_number(long int num, int base, int flags);

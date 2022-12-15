@@ -4,4 +4,5 @@ Write the algo for print_error function                             Completed
 Add more strings functions                                          Inprogress
 Write the getline function algo                                     Notstarted
 Write the str token function algo                                   Notstarted
+Add the shl_alias cmd funtionality                                  Notstarted
 
