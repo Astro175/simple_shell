@@ -28,6 +28,7 @@ typedef struct shlObj
 	char *file_name;
 	unsigned int err_count;
 	int status;
+	int err_num;
 	/*more incoming*/
 } shl_t;
 

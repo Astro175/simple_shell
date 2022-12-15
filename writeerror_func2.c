@@ -17,7 +17,7 @@ void print_error(shl_t *data, char *dest)
 }
 
 /**
- * _erratoi - converts strings to long long integer
+ * _erratoi - converts strings to long long integer for error out
  * @s: parsed string
  * Return: 0 or -1
  */

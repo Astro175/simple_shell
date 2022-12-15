@@ -27,8 +27,11 @@ typedef struct shlObj
 	char **argv;
 	char *file_name;
 	unsigned int err_count;
+	int status;
+	int err_num;
 	/*more incoming*/
 } shl_t;
+
 
 /* Write functions prototypes*/
 int _putchar(char c);
