@@ -26,7 +26,11 @@ int builtin_call(shl_t *data)
 	return (-1);
 }
 
-/*Still working on this*/
+/**
+ * shl_exit - exit the current process with a status
+ * @data: parsed data
+ * Return: the exit status
+ */
 int shl_exit(shl_t *data)
 {
 	int exit_num;
@@ -49,6 +53,11 @@ int shl_exit(shl_t *data)
 	return (-2);
 }
 
+/**
+ * shl_help - the cli help function
+ * @data: parsed arg
+ * Return: 0
+ */
 int shl_help(shl_t *data)
 {
 	int i;
@@ -57,5 +66,16 @@ int shl_help(shl_t *data)
 
 	_puts("Please use the man command for more info\n");
 
+	return (0);
+}
+
+/**
+ * shl_history - print the command history
+ * @data: parsed arg
+ * Return: 0
+ */
+int shl_history(shl_t *data)
+{
+	print_list(data->history);
 	return (0);
 }
