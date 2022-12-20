@@ -59,10 +59,10 @@ int print_d(int num, int fd);
 void print_error(shl_t *data, char *dest);
 
 /*buitin cmd functions*/
-int builtin_call(shl_t *);
-int shl_exit(shl_t *data);
-int shl_help(shl_t *data);
-int shl_history(shl_t *data);
+int builtin_call(char **argv);
+int shl_exit(char **argv);
+int shl_help(char **argv);
+// int shl_history(shl_t *data);
 
 /*Strings functions*/
 int _strlen(char *s);

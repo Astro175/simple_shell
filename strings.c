@@ -61,7 +61,7 @@ int _strcmp(char *s1, char *s2)
  * _strcat - concatenates two strings
  * @dest: main buffer
  * @src: source
- * Return the concatenated strings
+ * Return: the concatenated strings
  */
 char *_strcat(char *dest, char *src)
 {
@@ -73,25 +73,4 @@ char *_strcat(char *dest, char *src)
 		*dest++ = *src++;
 	*dest = *src;
 	return (str);
-}
-
-/**
- * *_strcpy - See description
- * @dest: char type string
- * @src: char type string
- * Description: Copy the string pointed to by pointer `src` to
- * the buffer pointed to by `dest`
- * Return: Pointer to `dest`
- */
-char *_strcpy(char *dest, char *src)
-{
-	int i;
-
-	for (i = 0; src[i] != '\0'; i++)
-	{
-		dest[i] = src[i];
-	}
-	dest[i] = '\0';
-
-	return (dest);
 }

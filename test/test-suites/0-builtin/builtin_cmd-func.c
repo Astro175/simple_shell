@@ -5,24 +5,19 @@
  * Return: -1 if function not found, 0 if sucessful,
  * 1 if not sucessful.
  */
-int builtin_call(shl_t *data)
+int builtin_call(char **argv)
 {
 	int i;
 
 	builtin_t builtin[] = {
 		{"exit", shl_exit},
-		{"env", shl_env},
 		{"help", shl_help},
 		{"history", shl_history},
-		{"setenv", shl_setenv},
-		{"unsetenv", shl_unsetenv},
-		{"cd", shl_cd},
-		{"alias", shl_alias},
 		{NULL, NULL}};
 
 	for (i = 0; builtin[i].name; i++)
-		if (_strcmp(data->argv[0], builtin[i].name) == 0)
-			return (builtin[i].fp(data->argv));
+		if (_strcmp(argv[0], builtin[i].name) == 0)
+			return (builtin[i].fp(argv));
 	return (-1);
 }
 
