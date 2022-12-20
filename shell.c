@@ -8,7 +8,9 @@
 int shl_exec(char **argv)
 {
 	if (argv[0] == NULL)
+	{
 		return (1);
+	}
 
 	pid_t pid;
 	int status;
@@ -31,7 +33,8 @@ int shl_exec(char **argv)
 
 	else
 	{
-		do {
+		do
+		{
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
@@ -46,19 +49,23 @@ int shl_exec(char **argv)
  */
 int shl_loop(void)
 {
-	size_t n;
+	size_t n = 0;
 	char *args = NULL;
 	int status = 1;
-	char **argv;
+	// char **argv;
 	ssize_t parsed = 0;
 
 	while (status)
 	{
-		_puts("($) ");
+		if (isatty(STDIN_FILENO))
+			_puts("$ ");
 		parsed = getline(&args, &n, stdin);
 		/*Handling the EOF ctrl+D*/
 		if (parsed == -1)
+		{
+			free(args);
 			return (-1);
+		}
 
 		char *delim = " ";
 		char **tokens = malloc(1024 * sizeof(char *));
@@ -77,11 +84,12 @@ int shl_loop(void)
  * @argc: arg count
  * @argv: arg vector
  * Return: exit success
-*/
+ */
 int main(int argc, char **argv)
 {
 
 	shl_loop();
+	// free(argv);
 
 	return (EXIT_SUCCESS);
 }
