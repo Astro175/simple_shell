@@ -66,12 +66,21 @@ int shl_loop(void)
 		}
 
 		char *delim = " ";
+		/*Using null delim for commnds to take no args*/
+		char *del = "\0";
 		char **tokens = malloc(1024 * sizeof(char *));
 		int i = 1;
 
 		*(args + (_strlen(args) - 1)) = '\0';
-		tokens[0] = strtok(args, delim);
-		tokens[1] = NULL;
+		tokens[0] = strtok(args, del);
+		tokens[1] = "gb";
+		while (tokens[i])
+		{
+			tokens[i] = strtok(NULL, delim);
+			i++;
+		};
+		tokens[i] = NULL;
+
 		status = builtin_call(tokens);
 		free(tokens);
 	}
