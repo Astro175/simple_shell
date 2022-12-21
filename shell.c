@@ -86,7 +86,7 @@ int shl_loop(char *av[])
 		};
 		tokens[i] = NULL;
 
-		status = builtin_call(tokens, av);
+		status = shl_exec(tokens, av);
 		free(tokens);
 	}
 	return (EXIT_SUCCESS);
