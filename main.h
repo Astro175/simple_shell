@@ -75,7 +75,7 @@ int print_d(int num, int fd);
 void print_error(shl_t *data, char *dest);
 
 /*buitin cmd functions*/
-int builtin_call(char **argv, char *av[]);
+int builtin_call(char **argv, char **av);
 int shl_exit();
 int shl_help();
 
@@ -96,6 +96,6 @@ char *convert_number(long int num, int base, int flags);
 size_t print_list(const list_t *h);
 
 /*Shell.c*/
-int shl_exec(char **argv, char *av[]);
+int shl_exec(char **argv, char **av);
 
 #endif

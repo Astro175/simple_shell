@@ -2,7 +2,6 @@
 
 /**
  * shl_exit - exit the current process with a status
- * @args: parsed data
  * Return: the exit status
  */
 int shl_exit()
@@ -14,7 +13,6 @@ int shl_exit()
 
 /**
  * shl_help - the cli help function
- * @argv: parsed arg
  * Return: 0
  */
 int shl_help()
@@ -29,10 +27,11 @@ int shl_help()
 /**
  * builtin_call - double pointer function
  * @argv: data parsed
+ * @av: array of strings from the command line.
  * Return: -1 if function not found, 0 if sucessful,
  * 1 if not successful.
  */
-int builtin_call(char **argv, char *av[])
+int builtin_call(char **argv, char **av)
 {
 	int i;
 	builtin_t builtin[] = {

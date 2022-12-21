@@ -3,9 +3,10 @@
 /**
  * shl_exec - executes the commands passed
  * @argv: string array
+ * @av: sting array from the command line
  * Return: -1 if sucessful, 0 if failed
  */
-int shl_exec(char **argv, char *av[])
+int shl_exec(char **argv, char **av)
 {
 	pid_t pid;
 
@@ -45,10 +46,10 @@ int shl_exec(char **argv, char *av[])
 
 /**
  * shl_loop - shell loop for prompt
- * @void: takes no arg
+ * @av: array of strings
  * Return: -1 for EOF and 0 for exit, 1 repeat
  */
-int shl_loop(char *av[])
+int shl_loop(char **av)
 {
 	size_t n = 0;
 	char *args = NULL;
@@ -74,7 +75,8 @@ int shl_loop(char *av[])
 		if (parsed == -1)
 		{
 			free(args);
-			return (-1);
+			free(tokens);
+			return (0);
 		}
 		*(args + (_strlen(args) - 1)) = '\0';
 		tokens[0] = strtok(args, del);
@@ -98,7 +100,7 @@ int shl_loop(char *av[])
  * @argv: arg vector
  * Return: exit success
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
 	(void)(argc);
 
