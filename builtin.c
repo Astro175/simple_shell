@@ -2,13 +2,13 @@
 
 /**
  * shl_exit - exit the current process with a status
- * @argv: parsed data
+ * @args: parsed data
  * Return: the exit status
  */
 int shl_exit(char **args)
 {
 	_puts("****************GOODBYE**************\n");
-	return 0;
+	return (0);
 }
 
 /**
@@ -28,15 +28,16 @@ int shl_help(char **argv)
 }
 /**
  * builtin_call - double pointer function
- * @data: data parsed
+ * @argv: data parsed
  * Return: -1 if function not found, 0 if sucessful,
  * 1 if not sucessful.
  */
 int builtin_call(char **argv)
 {
 	int i;
+
 	if (argv[0] == NULL)
-		return 1;
+		return (1);
 
 	builtin_t builtin[] = {
 		{"exit", shl_exit},

@@ -33,8 +33,7 @@ int shl_exec(char **argv)
 
 	else
 	{
-		do
-		{
+		do {
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
@@ -52,7 +51,6 @@ int shl_loop(void)
 	size_t n = 0;
 	char *args = NULL;
 	int status = 1;
-	// char **argv;
 	ssize_t parsed = 0;
 
 	while (status)
@@ -74,7 +72,7 @@ int shl_loop(void)
 		*(args + (_strlen(args) - 1)) = '\0';
 		tokens[0] = strtok(args, delim);
 		tokens[1] = NULL;
-		status = shl_exec(tokens);
+		status = builtin_call(tokens);
 		free(tokens);
 	}
 }
@@ -89,7 +87,6 @@ int main(int argc, char **argv)
 {
 
 	shl_loop();
-	// free(argv);
 
 	return (EXIT_SUCCESS);
 }

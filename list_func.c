@@ -4,7 +4,7 @@
  * convert_number - converts a number
  * @num: parsed number
  * @base: parsed number base
- * @flag: arg flag
+ * @flags: arg flag
  * Return: a string
  */
 char *convert_number(long int num, int base, int flags)
@@ -24,8 +24,7 @@ char *convert_number(long int num, int base, int flags)
 	str = &buffer[49];
 	*str = '\0';
 
-	do
-	{
+	do {
 		*--str = array[n % base];
 		n /= base;
 	} while (n != 0);

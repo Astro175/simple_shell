@@ -72,8 +72,8 @@ int print_d(int num, int fd)
 	int i, count = 0;
 	unsigned int _abs_, current;
 
-	/*if the file descriptor is 2 or stderr no
-	switch the __putchar to _eputchar function*/
+	/* if the file descriptor is 2 or stderr no*/
+	/* switch the __putchar to _eputchar function*/
 	if (fd == STDERR_FILENO)
 		__putchar = _eputchar;
 	if (num < 0)
