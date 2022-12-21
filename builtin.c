@@ -25,7 +25,7 @@ int shl_help()
 	return (1);
 }
 /**
- * builtin_call - double pointer function
+ * builtin_call - function that execute the buitin commands
  * @argv: data parsed
  * @av: array of strings from the command line.
  * Return: -1 if function not found, 0 if sucessful,
@@ -33,18 +33,21 @@ int shl_help()
  */
 int builtin_call(char **argv, char **av)
 {
+
 	int i;
+
 	builtin_t builtin[] = {
 		{"exit", shl_exit},
 		{"help", shl_help},
 		{NULL, NULL}
 	};
-
+	/*If arg 1 is null prompt again*/
 	if (argv[0] == NULL)
 		return (1);
-
+	/*Checking if the parsed command is the same with builtin command name*/
 	for (i = 0; builtin[i].name; i++)
 		if (strcmp(argv[0], builtin[i].name) == 0)
 			return (builtin[i].fp());
+	/*If the command not in buitin call exec on the command executable*/
 	return (shl_exec(argv, av));
 }
