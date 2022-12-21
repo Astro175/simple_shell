@@ -80,4 +80,8 @@ char *_strdup(char *str);
 char *convert_number(long int num, int base, int flags);
 size_t print_list(const list_t *h);
 
+/*Shell.c*/
+int shl_exec(char **argv);
+
+
 #endif
