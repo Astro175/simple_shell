@@ -13,6 +13,12 @@
 #define CONVERT_LOWERCASE 1
 #define CONVERT_UNSIGNED 2
 
+/**
+ * struct list - linked list structure
+ * @num: number arg
+ * @s: string
+ * @next: next node
+ */
 typedef struct list
 {
 	int num;
@@ -32,6 +38,16 @@ typedef struct builtin
 	int (*fp)(char **args);
 } builtin_t;
 
+/**
+ * struct shlObj - shell object
+ * @arg: param arg
+ * @argv: strings array
+ * @file_name: filename
+ * @err_count: error count
+ * @status: returning status
+ * @err_num: error number
+ * @history: history list
+ */
 typedef struct shlObj
 {
 	char *arg;
@@ -62,7 +78,6 @@ void print_error(shl_t *data, char *dest);
 int builtin_call(char **argv);
 int shl_exit(char **argv);
 int shl_help(char **argv);
-// int shl_history(shl_t *data);
 
 /*Strings functions*/
 int _strlen(char *s);
@@ -82,6 +97,5 @@ size_t print_list(const list_t *h);
 
 /*Shell.c*/
 int shl_exec(char **argv);
-
 
 #endif
