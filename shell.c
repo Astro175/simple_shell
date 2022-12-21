@@ -5,7 +5,7 @@
  * @argv: string array
  * Return: -1 if sucessful, 0 if failed
  */
-int shl_exec(char **argv)
+int shl_exec(char **argv, char *av[])
 {
 	pid_t pid;
 
@@ -27,7 +27,7 @@ int shl_exec(char **argv)
 	{
 		if (execve(argv[0], argv, NULL) == -1)
 		{
-			perror("Failed");
+			perror(av[0]);
 			return (0);
 		}
 	}
@@ -48,7 +48,7 @@ int shl_exec(char **argv)
  * @void: takes no arg
  * Return: -1 for EOF and 0 for exit, 1 repeat
  */
-int shl_loop(void)
+int shl_loop(char *av[])
 {
 	size_t n = 0;
 	char *args = NULL;
@@ -86,7 +86,7 @@ int shl_loop(void)
 		};
 		tokens[i] = NULL;
 
-		status = builtin_call(tokens);
+		status = builtin_call(tokens, av);
 		free(tokens);
 	}
 	return (EXIT_SUCCESS);
@@ -98,12 +98,11 @@ int shl_loop(void)
  * @argv: arg vector
  * Return: exit success
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	(void)(argc);
-	(void)(argv);
 
-	shl_loop();
+	shl_loop(argv);
 
 	return (EXIT_SUCCESS);
 }

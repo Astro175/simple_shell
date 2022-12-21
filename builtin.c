@@ -32,7 +32,7 @@ int shl_help()
  * Return: -1 if function not found, 0 if sucessful,
  * 1 if not successful.
  */
-int builtin_call(char **argv)
+int builtin_call(char **argv, char *av[])
 {
 	int i;
 	builtin_t builtin[] = {
@@ -47,5 +47,5 @@ int builtin_call(char **argv)
 	for (i = 0; builtin[i].name; i++)
 		if (strcmp(argv[0], builtin[i].name) == 0)
 			return (builtin[i].fp());
-	return (shl_exec(argv));
+	return (shl_exec(argv, av));
 }
