@@ -5,8 +5,9 @@
  * @args: parsed data
  * Return: the exit status
  */
-int shl_exit(char **args)
+int shl_exit()
 {
+
 	_puts("****************GOODBYE**************\n");
 	return (0);
 }
@@ -16,9 +17,8 @@ int shl_exit(char **args)
  * @argv: parsed arg
  * Return: 0
  */
-int shl_help(char **argv)
+int shl_help()
 {
-	int i;
 
 	_puts("Ayobami and David shell help page\n");
 
@@ -30,22 +30,22 @@ int shl_help(char **argv)
  * builtin_call - double pointer function
  * @argv: data parsed
  * Return: -1 if function not found, 0 if sucessful,
- * 1 if not sucessful.
+ * 1 if not successful.
  */
 int builtin_call(char **argv)
 {
 	int i;
+	builtin_t builtin[] = {
+		{"exit", shl_exit},
+		{"help", shl_help},
+		{NULL, NULL}
+	};
 
 	if (argv[0] == NULL)
 		return (1);
 
-	builtin_t builtin[] = {
-		{"exit", shl_exit},
-		{"help", shl_help},
-		{NULL, NULL}};
-
 	for (i = 0; builtin[i].name; i++)
 		if (strcmp(argv[0], builtin[i].name) == 0)
-			return (builtin[i].fp(argv));
+			return (builtin[i].fp());
 	return (shl_exec(argv));
 }

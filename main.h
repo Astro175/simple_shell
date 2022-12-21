@@ -35,7 +35,7 @@ typedef struct list
 typedef struct builtin
 {
 	char *name;
-	int (*fp)(char **args);
+	int (*fp)();
 } builtin_t;
 
 /**
@@ -76,8 +76,8 @@ void print_error(shl_t *data, char *dest);
 
 /*buitin cmd functions*/
 int builtin_call(char **argv);
-int shl_exit(char **argv);
-int shl_help(char **argv);
+int shl_exit();
+int shl_help();
 
 /*Strings functions*/
 int _strlen(char *s);

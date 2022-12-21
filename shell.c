@@ -7,13 +7,14 @@
  */
 int shl_exec(char **argv)
 {
+	pid_t pid;
+
+	int status;
+
 	if (argv[0] == NULL)
 	{
 		return (1);
 	}
-
-	pid_t pid;
-	int status;
 
 	pid = fork();
 
@@ -33,7 +34,8 @@ int shl_exec(char **argv)
 
 	else
 	{
-		do {
+		do
+		{
 			waitpid(pid, &status, WUNTRACED);
 		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
 	}
@@ -51,10 +53,20 @@ int shl_loop(void)
 	size_t n = 0;
 	char *args = NULL;
 	int status = 1;
-	ssize_t parsed = 0;
 
 	while (status)
 	{
+		int i = 1;
+		ssize_t parsed = 0;
+		char *delim = " ";
+		/*Using null delim for commnds to take no args*/
+		char *del = "\0";
+		char **tokens = malloc(1024 * sizeof(char *));
+		if (tokens == NULL)
+		{
+			free(tokens);
+			return (0);
+		}
 		if (isatty(STDIN_FILENO))
 			_puts("$ ");
 		parsed = getline(&args, &n, stdin);
@@ -64,13 +76,6 @@ int shl_loop(void)
 			free(args);
 			return (-1);
 		}
-
-		char *delim = " ";
-		/*Using null delim for commnds to take no args*/
-		char *del = "\0";
-		char **tokens = malloc(1024 * sizeof(char *));
-		int i = 1;
-
 		*(args + (_strlen(args) - 1)) = '\0';
 		tokens[0] = strtok(args, del);
 		tokens[1] = "gb";
@@ -84,6 +89,7 @@ int shl_loop(void)
 		status = builtin_call(tokens);
 		free(tokens);
 	}
+	return (EXIT_SUCCESS);
 }
 
 /**
@@ -94,6 +100,8 @@ int shl_loop(void)
  */
 int main(int argc, char **argv)
 {
+	(void)(argc);
+	(void)(argv);
 
 	shl_loop();
 
