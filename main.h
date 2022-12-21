@@ -96,6 +96,11 @@ char *convert_number(long int num, int base, int flags);
 size_t print_list(const list_t *h);
 
 /*Shell.c*/
+<<<<<<< HEAD
 int shl_exec(char **argv, char **av);
+=======
+int shl_exec(char **argv, char *av[]);
+int shl_loop(char *av[]);
+>>>>>>> 2e744fedcb13374403f42c18538a525c69522e04
 
 #endif
