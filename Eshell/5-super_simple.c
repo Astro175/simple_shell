@@ -12,12 +12,18 @@
 
 int main(void)
 {
+	char *argv[1023];
+	pid_t pid;
+	int i, result;
+	char *command;
+	char *token;
+	size_t size;
 	while (1)
 	{
 		printf("$ ");
-		char *command = NULL;
-		size_t size = 0;
-		int result = getline(&command, &size, stdin);
+		command = NULL;
+		size = 0;
+		result = getline(&command, &size, stdin);
 
 		if (result == -1)
 		{
@@ -25,15 +31,14 @@ int main(void)
 			return (-1);
 		}
 
-		char *token = strtok(command, " \n");
+		token = strtok(command, " \n");
 
 		if (token == NULL)
 		{
 			continue;
 		}
 
-		char *argv[1024];
-		int i = 0;
+		i = 0;
 		while((argv[i] = strtok(NULL, " \n")) != NULL)
 		{
 			i++;
@@ -41,7 +46,7 @@ int main(void)
 		argv[i] = NULL;
 
 
-		pid_t pid = fork();
+		pid = fork();
 
 		if (pid == 0)
 		{
