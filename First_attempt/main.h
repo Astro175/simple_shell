@@ -9,9 +9,9 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 
-/*Macros*/
-#define CONVERT_LOWERCASE 1
-#define CONVERT_UNSIGNED 2
+// /*Macros*/
+// #define CONVERT_LOWERCASE 1
+// #define CONVERT_UNSIGNED 2
 
 /**
  * struct list - linked list structure
