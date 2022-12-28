@@ -6,7 +6,7 @@
  * @av: Arrayof strings
  * Return: -1 if sucessful, 0 if failed
  */
-int shl_exec(char **argv, char **av)
+int shl_exec(char **argv)
 {
 	pid_t pid;
 
@@ -30,7 +30,7 @@ int shl_exec(char **argv, char **av)
 		if (execve(argv[0], argv, NULL) == -1)
 		{
 			/*Putting the name of the shell ran from the commandline stderr*/
-			perror(av[0]);
+			perror(argv[0]);
 			return (0);
 		}
 	}

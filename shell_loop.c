@@ -5,7 +5,7 @@
  * @av: takes no arg
  * * Return: -1 for EOF and 0 for exit, 1 repeat
  */
-int shl_loop(char **av)
+int shl_loop(void)
 {
 	size_t n = 0;
 	char *args = NULL;
@@ -43,7 +43,7 @@ int shl_loop(char **av)
 			i++;
 		}
 		tokens[i] = NULL;
-		status = shl_exec(tokens, av);
+		status = shl_exec(tokens);
 		free(tokens);
 	}
 	return (EXIT_SUCCESS);

@@ -31,7 +31,7 @@ int shl_help(void)
  * Return: -1 if function not found, 0 if sucessful,
  * 1 if not successful.
  */
-int builtin_call(char **argv, char **av)
+int builtin_call(char **argv)
 {
 
 	int i;
@@ -49,5 +49,5 @@ int builtin_call(char **argv, char **av)
 		if (strcmp(argv[0], builtin[i].name) == 0)
 			return (builtin[i].fp());
 	/*If the command not in buitin call exec on the command executable*/
-	return (shl_exec(argv, av));
+	return (shl_exec(argv));
 }
