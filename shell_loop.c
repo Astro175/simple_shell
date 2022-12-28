@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
-* shl_loop - shell loop for prompt
-* @av: takes no arg
-* * Return: -1 for EOF and 0 for exit, 1 repeat
-*/
+ * shl_loop - shell loop for prompt
+ * @av: takes no arg
+ * * Return: -1 for EOF and 0 for exit, 1 repeat
+ */
 int shl_loop(char **av)
 {
 	size_t n = 0;
@@ -16,8 +16,6 @@ int shl_loop(char **av)
 		int i = 1;
 		ssize_t parsed = 0;
 		char *delim = " ";
-		/*Using null delim for commnds to take no args*/
-		char *del = "\0";
 		char **tokens = malloc(1024 * sizeof(char *));
 
 		if (tokens == NULL)
@@ -36,10 +34,8 @@ int shl_loop(char **av)
 			free(tokens);
 			return (-1);
 		}
-		/*Replacing the newline character added from the getline with null*/
 		*(args + (_strlen(args) - 1)) = '\0';
-		tokens[0] = strtok(args, del);
-		/*Initializing tokenized str at index 1 of token arrays with garbage*/
+		tokens[0] = strtok(args, delim);
 		tokens[1] = "gb";
 		while (tokens[i])
 		{
@@ -47,8 +43,6 @@ int shl_loop(char **av)
 			i++;
 		}
 		tokens[i] = NULL;
-
-		/*Calling the exec and assign it return to status*/
 		status = shl_exec(tokens, av);
 		free(tokens);
 	}

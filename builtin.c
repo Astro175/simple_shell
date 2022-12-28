@@ -4,7 +4,7 @@
  * shl_exit - exit the current process with a status
  * Return: the exit status
  */
-int shl_exit()
+int shl_exit(void)
 {
 
 	_puts("****************GOODBYE**************\n");
@@ -15,7 +15,7 @@ int shl_exit()
  * shl_help - the cli help function
  * Return: 0
  */
-int shl_help()
+int shl_help(void)
 {
 
 	_puts("Ayobami and David shell help page\n");
